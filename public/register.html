@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Account</title>
+</head>
+<body>
+  <h2>Register a Football Profile</h2>
+  <form action="/register" method="POST">
+    <!-- Infos de base -->
+    <input type="text" name="username" placeholder="Username" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
+    <input type="password" name="password" placeholder="Password" required><br>
+
+    <!-- Niveau -->
+    <label>Niveau :</label>
+    <select name="level">
+      <option value="Beginner">Beginner</option>
+      <option value="Intermediate" selected>Intermediate</option>
+      <option value="Advanced">Advanced</option>
+    </select><br>
+
+    <!-- Poste -->
+    <label>Position :</label>
+    <select name="position">
+      <option value="GK">Goalkeeper</option>
+      <option value="DEF">Defender</option>
+      <option value="MID" selected>Midfielder</option>
+      <option value="ATT">Attacker</option>
+    </select><br>
+
+    <!-- Réseaux sociaux -->
+    <h4>Social Links</h4>
+    <input type="text" name="instagram" placeholder="Instagram URL"><br>
+    <input type="text" name="snapchat" placeholder="Snapchat"><br>
+    <input type="text" name="whatsapp" placeholder="WhatsApp"><br>
+    <input type="text" name="phone" placeholder="Phone number"><br>
+
+    <!-- Statistiques (facultatif à la création) -->
+    <h4>Stats (optionnel)</h4>
+    <input type="number" name="matchesPlayed" placeholder="Matches Played"><br>
+    <input type="number" name="goals" placeholder="Goals"><br>
+    <input type="number" name="assists" placeholder="Assists"><br>
+
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>
