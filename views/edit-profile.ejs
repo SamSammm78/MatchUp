@@ -7,17 +7,40 @@
 </head>
 <body>
 <div class="container mt-5">
-  <h2>Modifier mon profil</h2>
+  <h2>Modify my profile</h2>
 
   <form action="/edit-profile" method="POST">
     <div class="mb-3">
-      <label class="form-label">Nom d’utilisateur</label>
+      <label class="form-label">Username</label>
       <input type="text" name="username" class="form-control" value="<%= user.username %>" required>
     </div>
 
     <div class="mb-3">
       <label class="form-label">Email</label>
       <input type="email" name="email" class="form-control" value="<%= user.email %>" required>
+    </div>
+    
+    <div class="mb-3">
+    <label for="position" class="form-label">Position</label>
+    <select name="position" id="position" class="form-select">
+        <option value="ATT" <%= user.position === 'ATT' ? 'selected' : '' %>>Attaquant</option>
+        <option value="MID" <%= user.position === 'MID' ? 'selected' : '' %>>Milieu</option>
+        <option value="DEF" <%= user.position === 'DEF' ? 'selected' : '' %>>Défenseur</option>
+        <option value="GK"  <%= user.position === 'GK'  ? 'selected' : '' %>>Gardien</option>
+    </select>
+    </div>
+
+
+
+    <div class="mb-3">
+      <label class="form-label">Instagram</label>
+      <input type="text" name="instagram" class="form-control" value="<%= user.socialLinks.instagram %>">
+      <label class="form-label">Snapchat</label>
+      <input type="text" name="snapchat" class="form-control" value="<%= user.socialLinks.snapchat %>">
+      <label class="form-label">WhatsApp</label>
+      <input type="text" name="whatsapp" class="form-control" value="<%= user.socialLinks.whatsapp %>">
+      <label class="form-label">Phone</label>
+      <input type="text" name="phone" class="form-control" value="<%= user.socialLinks.phone %>">
     </div>
 
     <button type="submit" class="btn btn-success">Enregistrer</button>

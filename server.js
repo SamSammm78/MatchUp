@@ -445,7 +445,14 @@ app.post('/edit-profile', requireLogin, async (req, res) => {
   try {
     await User.findByIdAndUpdate(req.session.userId, {
       username,
-      email
+      email,
+      position: req.body.position,
+      socialLinks: {
+        instagram: req.body.instagram,
+        snapchat: req.body.snapchat,
+        whatsapp: req.body.whatsapp,
+        phone: req.body.phone
+      },
     });
     res.redirect('/my-profile');
   } catch (err) {
