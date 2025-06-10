@@ -420,6 +420,35 @@ app.get('/my-profile', requireLogin, (req, res) => {
     });
 });
 
+app.get('/edit-profile', requireLogin, (req, res) => {
+  User.findById(req.session.userId)
+    .then(user => {
+      if (!user) {
+        return res.redirect('/login');
+      }
+      res.render('edit-profile', { user: user });
+    })
+    .catch(err => {
+      console.error('Erreur lors de la récupération de l\'utilisateur:', err);
+      res.status(500).send('Erreur serveur');
+    });
+});
+
+app.post('/edit-profile', requireLogin, async (req, res) => {
+  const { username, email } = req.body;
+
+  try {
+    await User.findByIdAndUpdate(req.session.userId, {
+      username,
+      email
+    });
+    res.redirect('/my-profile');
+  } catch (err) {
+    console.error('Erreur lors de la mise à jour du profil:', err);
+    res.status(500).send('Erreur serveur');
+  }
+});
+
 
 // Déconnexion
 app.get('/logout', (req, res) => {
