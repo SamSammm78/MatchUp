@@ -12,21 +12,34 @@
       <p>No matches available yet.</p>
     <% } %>
     <% matches.forEach(match => { %>
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title"><%= match.location %> — <%= new Date(match.date).toLocaleString() %></h5>
-          <p class="card-text">Created by: <strong><%= match.creator.username %></strong></p>
-          <p class="card-text">Players (<%= match.players.length %>/<%= match.maxPlayers %>):</p>
-          <ul>
-            <% match.players.forEach(player => { %>
-              <li><%= player.username %></li>
-            <% }) %>
-          </ul>
-          <p class="card-text"><%= match.notes || 'No additional notes.' %></p>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title"><%= match.location %> — <%= new Date(match.date).toLocaleString() %></h5>
+        <p class="card-text">Created by: <strong><%= match.creator.username %></strong></p>
+        <p class="card-text">Players (<%= match.players.length %>/<%= match.maxPlayers %>):</p>
+        <ul>
+          <% match.players.forEach(player => { %>
+            <li><a href="/profile/<%= player._id %>"><%= player.username %></a></li>
+          <% }) %>
+        </ul>
+        <p class="card-text"><%= match.notes || 'No additional notes.' %></p>
+
+        <% 
+          // Check if user already joined the match
+          const userHasJoined = match.players.some(player => player._id.toString() === user._id.toString());
+        %>
+
+        <% if (!userHasJoined) { %>
           <button class="btn btn-primary" onclick="window.location.href='/join-match/<%= match._id %>'">Join Match</button>
-        </div>
+        <% } %>
+
+        <% if (userHasJoined) { %>
+        <h5>Already joined</h5>
+        <% } %>
       </div>
+    </div>
     <% }) %>
+
   </div>
 </body>
 </html>

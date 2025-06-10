@@ -197,16 +197,20 @@ app.post('/create-match', requireLogin, async (req, res) => {
 
 app.get('/matches', requireLogin, (req, res) => {
   Match.find()
-    .populate('creator', 'username')
-    .populate('players', 'username') // Ajouté : récupérer les joueurs
+    .populate('creator', 'username') 
+    .populate('players', 'username') // si tu veux les joueurs avec leur username
     .then(matches => {
-      res.render('matches', { matches });
+      User.findById(req.session.userId).then(user => {
+        if (!user) return res.redirect('/login');
+        res.render('matches', { matches, user });
+      });
     })
     .catch(err => {
       console.error('Erreur lors de la récupération des matchs:', err);
       res.status(500).send('Erreur serveur');
     });
 });
+
 
 app.get('/join-match/:matchId', requireLogin, (req, res) => {
   const matchId = req.params.matchId;
@@ -389,11 +393,11 @@ app.post('/match-over/:matchId', requireLogin, async (req, res) => {
 });
 
 
-// view profile by username
-app.get('/profile/:username', requireLogin, (req, res) => {
-  const username = req.params.username;
+// view profile by userId
+app.get('/profile/:userId', requireLogin, (req, res) => {
+  const userId = req.params.userId;
 
-  User.findOne({ username: username })
+  User.findById(userId)
     .then(user => {
       if (!user) {
         return res.status(404).send('Utilisateur non trouvé');
@@ -405,6 +409,7 @@ app.get('/profile/:username', requireLogin, (req, res) => {
       res.status(500).send('Erreur serveur');
     });
 });
+
 
 app.get('/my-profile', requireLogin, (req, res) => {
   User.findById(req.session.userId)
