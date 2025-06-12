@@ -41,7 +41,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header" id="heading-<%= match._id %>">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<%= match._id %>" aria-expanded="false" aria-controls="collapse-<%= match._id %>">
-                    Voir les joueurs (<%= match.players.length %>)
+                    Show players (<%= match.players.length %>)
                 </button>
                 </h2>
                 <div id="collapse-<%= match._id %>" class="accordion-collapse collapse" aria-labelledby="heading-<%= match._id %>" data-bs-parent="#accordionPlayers-<%= match._id %>">
@@ -51,7 +51,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a href="/profile/<%= player._id %>"><%= player.username %></a>
                         <% if (player._id.toString() === match.creator._id.toString()) { %>
-                            <span class="badge bg-primary rounded-pill">Créateur</span>
+                            <span class="badge bg-primary rounded-pill">Creator</span>
                         <% } %>
                         </li>
                     <% }) %>

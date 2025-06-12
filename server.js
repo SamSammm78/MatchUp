@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
 const session = require('express-session');
+const bcrypt = require('bcrypt');
 
 const app = express();
 const PORT = 3000;
@@ -98,10 +99,12 @@ app.get('/register-form', (req, res) => {
 // Enregistrement utilisateur
 app.post('/register', async (req, res) => {
   try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10); // 10 = nombre de "rounds" (coût)
+
     const newUser = new User({
       username: req.body.username,
       email: req.body.email,
-      password: req.body.password,  // → pense à hasher le mdp en prod !
+      password: hashedPassword, // 🔐 mot de passe haché
       level: req.body.level,
       position: req.body.position,
       socialLinks: {
@@ -121,7 +124,7 @@ app.post('/register', async (req, res) => {
     res.redirect('/login');
   } catch (err) {
     console.error(err);
-    res.status(500).send('❌ Erreur serveur');
+    res.status(500).send('❌ Server error');
   }
 });
 
@@ -138,24 +141,26 @@ app.post('/login', async (req, res) => {
     const user = await User.findOne({ username });
 
     if (!user) {
-      return res.status(400).send('Utilisateur non trouvé');
+      return res.status(400).send('User not found');
     }
 
-    // Ici on compare juste le password en clair (pas sécurisé)
-    if (user.password !== password) {
-      return res.status(400).send('Mot de passe incorrect');
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordCorrect) {
+      return res.status(400).send('Incorrect password');
     }
 
-    // On sauvegarde l'id et username en session
+    // Login success : enregistrer en session
     req.session.userId = user._id;
     req.session.username = user.username;
 
     res.redirect('/');
   } catch (err) {
     console.error(err);
-    res.status(500).send('Erreur serveur');
+    res.status(500).send('❌ Server error');
   }
 });
+
 
 // Create Match 
 app.get('/create-match', requireLogin, (req, res) => {
