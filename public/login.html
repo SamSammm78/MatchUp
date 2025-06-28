@@ -8,11 +8,12 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 </head>
 <body>
-  <div class="mt-5 text-center">
-    <h1>MatchUp</h1>
-    <p class="lead">A web app that helps friends organize and join football matches easily.</p>
+<div class="d-flex flex-column justify-content-start align-items-center" style="min-height: 100vh; padding-top: 120px;">
+  <div class="text-center mb-3">
+    <h1 class="fw-bold m-0" style="font-size: 2.5rem;">MatchUp</h1>
+    <p class="lead m-0" style="font-size: 1rem;">A web app that helps friends organize and join football matches easily.</p>
   </div>
-  <div class="container mt-5">
+  <div class="container mt-4">
     <div class="row justify-content-center">
       <div class="col-md-6 col-lg-5">
         <div class="card rounded-4">
@@ -22,22 +23,29 @@
               <div class="mt-4 mb-4">
                 <div class="input-group">
                   <span class="input-group-text" id="basic-addon1">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"></path>
-                </svg>
-                </span>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-person" viewBox="0 0 16 16">
+                      <path
+                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z">
+                      </path>
+                    </svg>
+                  </span>
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
                 </div>
               </div>
               <div class="mb-4">
-              <div class="input-group">
-                <span class="input-group-text" id="basic-addon1">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M8 0a4 4 0 0 1 4 4v2.05a2.5 2.5 0 0 1 2 2.45v5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 13.5v-5a2.5 2.5 0 0 1 2-2.45V4a4 4 0 0 1 4-4M4.5 7A1.5 1.5 0 0 0 3 8.5v5A1.5 1.5 0 0 0 4.5 15h7a1.5 1.5 0 0 0 1.5-1.5v-5A1.5 1.5 0 0 0 11.5 7zM8 1a3 3 0 0 0-3 3v2h6V4a3 3 0 0 0-3-3"></path>
-                </svg>
-                </span>
-                <input type="password" class="form-control" id="password" placeholder="Password" name="password" required>
-              </div>
+                <div class="input-group">
+                  <span class="input-group-text" id="basic-addon1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-lock" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M8 0a4 4 0 0 1 4 4v2.05a2.5 2.5 0 0 1 2 2.45v5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 13.5v-5a2.5 2.5 0 0 1 2-2.45V4a4 4 0 0 1 4-4M4.5 7A1.5 1.5 0 0 0 3 8.5v5A1.5 1.5 0 0 0 4.5 15h7a1.5 1.5 0 0 0 1.5-1.5v-5A1.5 1.5 0 0 0 11.5 7zM8 1a3 3 0 0 0-3 3v2h6V4a3 3 0 0 0-3-3">
+                      </path>
+                    </svg>
+                  </span>
+                  <input type="password" class="form-control" id="password" placeholder="Password" name="password"
+                    required>
+                </div>
               </div>
               <div class="d-grid">
                 <button type="submit" class="btn btn-success mt-2">Log In</button>
@@ -49,6 +57,8 @@
       </div>
     </div>
   </div>
+</div>
+
 
   <!-- Bootstrap JS Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
